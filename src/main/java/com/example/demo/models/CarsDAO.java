@@ -41,20 +41,25 @@ public class CarsDAO {
     }
 
     public List<Cars> SelectByValue(String value) {
+
         Session session = HibernateUtil.getSessionFactory().openSession();
+
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Cars> cq = cb.createQuery(Cars.class);
         Root<Cars> root = cq.from(Cars.class);
         cq.select(root);
-
-
         cq.where(cb.equal(root.get("category"), cb.parameter(String.class, "val")));
         Query<Cars> query = session.createQuery(cq);
         query.setParameter("val", value);
-        System.out.println(query.getQueryString());
         var carList = query.getResultList();
 
 
+
+
+
+/*
+        var queryTest = session.createQuery("Select c from Cars c where c.category=:val").setParameter("val",value).getResultList();
+  */
         return carList;
 
     }

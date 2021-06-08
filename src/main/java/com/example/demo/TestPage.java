@@ -35,8 +35,10 @@ public class TestPage extends HttpServlet {
         CarsDAO carsDAO = new CarsDAO();
         set =  carsDAO.SelectByValue(getIt);
         req.setAttribute("set",set);
-        RequestDispatcher rd = req.getRequestDispatcher("test.jsp");
-        rd.forward(req,resp);
+        ShowData showData = new ShowData();
+        showData.doGet(req, resp);
+
+
 
     }
 
