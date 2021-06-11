@@ -5,9 +5,9 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Search engine welcome " %>
 </h1>
 <br/>
-<a href="/demo_war_exploded/search.jsp">Hello Servlet</a>
+<a href="/demo_war_exploded/search-page">start searching</a>
 </body>
 </html>

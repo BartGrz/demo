@@ -1,5 +1,5 @@
 <%@ page import="com.example.demo.models.Cars" %>
-<%@ page import="com.example.demo.TestPage" %>
+<%@ page import="com.example.demo.PrepareData" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -8,7 +8,6 @@
     <title>Search result: persons</title>
 </head>
 <body bgcolor="white">
-Here are all persons matching your search critera:
 <table width="59%" border="1">
     <thead>
     <tr>

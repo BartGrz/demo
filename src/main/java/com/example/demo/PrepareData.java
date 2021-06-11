@@ -17,8 +17,8 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.*;
 
-@WebServlet(name = "testPage", value = "/test-page")
-public class TestPage extends HttpServlet {
+@WebServlet(name = "prepareData", value = "/prepare-data")
+public class PrepareData extends HttpServlet {
 
     private List<Cars> set = new ArrayList<>();
     @Getter
@@ -28,15 +28,18 @@ public class TestPage extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+
+        var val = req.getParameter("category");
+        req.setAttribute("val", val);
 
         var getIt = (String)req.getAttribute("val");
-
         CarsDAO carsDAO = new CarsDAO();
         set =  carsDAO.SelectByValue(getIt);
         req.setAttribute("set",set);
         ShowData showData = new ShowData();
         showData.doGet(req, resp);
+
 
 
 

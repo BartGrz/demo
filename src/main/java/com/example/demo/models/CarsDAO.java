@@ -19,16 +19,14 @@ import java.util.List;
 import java.util.Set;
 
 public class CarsDAO {
-
+    Configuration cfg = new Configuration().configure();
+    SessionFactory sessionFactory = cfg.buildSessionFactory();
+    Session session = new HibernateUtil().getSessionFactory().openSession();
 
     public List<Cars> selectAllCars() {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
 
         Set<String> carsSet = new HashSet<>();
-
-
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Cars> cq = cb.createQuery(Cars.class);
         var root = cq.from(Cars.class);
@@ -42,8 +40,6 @@ public class CarsDAO {
 
     public List<Cars> SelectByValue(String value) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Cars> cq = cb.createQuery(Cars.class);
         Root<Cars> root = cq.from(Cars.class);
@@ -53,13 +49,6 @@ public class CarsDAO {
         query.setParameter("val", value);
         var carList = query.getResultList();
 
-
-
-
-
-/*
-        var queryTest = session.createQuery("Select c from Cars c where c.category=:val").setParameter("val",value).getResultList();
-  */
         return carList;
 
     }
